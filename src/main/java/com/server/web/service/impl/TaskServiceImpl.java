@@ -35,7 +35,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public TaskDTO addTask(Long userId, Long applicationId) {
-        return applicationId > 0 && applicationId <= applicationRepository.findAll().size() ?
+        return applicationId > 0 && applicationId <= applicationRepository.count() ?
                 converter.convert(taskRepository.saveAndFlush(new Task()
                         .setStartTime(LocalDateTime.now())
                         .setEndTime(LocalDateTime.now().plusMinutes(randomInt(1, 5)))

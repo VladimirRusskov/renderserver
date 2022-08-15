@@ -21,4 +21,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     public List<ApplicationDTO> getListApplication() {
         return repository.findAll().stream().map(converter::convert).collect(Collectors.toList());
     }
+
+    @Override
+    public long count() {
+        return repository.count();
+    }
 }

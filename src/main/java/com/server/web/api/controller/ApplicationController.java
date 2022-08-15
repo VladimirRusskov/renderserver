@@ -21,7 +21,6 @@ public class ApplicationController {
 
     @GetMapping("/application/list")
     public ResponseEntity<ApplicationResponse> getAppList() {
-        List<ApplicationDTO> list = applicationService.getListApplication();
-        return list.isEmpty() ? status(HttpStatus.NO_CONTENT).build() : ok(new ApplicationResponse(list));
+        return ok(new ApplicationResponse(applicationService.getListApplication()));
     }
 }

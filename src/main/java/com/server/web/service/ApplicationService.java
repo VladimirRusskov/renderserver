@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ApplicationService {
     List<ApplicationDTO> getListApplication();
+
+    long count();
 }
