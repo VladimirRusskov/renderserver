@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="init" author="russkov">
+        <createTable tableName="users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="user_role">
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="users_id" references="users(id)"/>
+            </column>
+            <column name="role" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="applications">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="tasks">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="start_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="user_id" references="users(id)"/>
+            </column>
+            <column name="application_id" type="bigint">
+                <constraints foreignKeyName="application_id" references="applications(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="some_data_user" author="russkov">
+        <insert tableName="users">
+            <column name="email">russkov@gmail.com</column>
+            <column name="password">$2a$10$WwwIy.q4PlPkdhMyMDq88O5M/Mo7/kzADBjvakPolUppWzFnPQRhO</column>
+        </insert>
+        <insert tableName="user_role">
+            <column name="user_id">1</column>
+            <column name="role">USER</column>
+        </insert>
+        <insert tableName="applications">
+            <column name="name">Application1</column>
+        </insert>
+        <insert tableName="tasks">
+            <column name="id">1</column>
+            <column name="start_time">2022-08-16T11:29:40.316002022</column>
+            <column name="end_time">2022-08-16T11:29:43.316002022</column>
+            <column name="user_id">1</column>
+            <column name="application_id">1</column>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

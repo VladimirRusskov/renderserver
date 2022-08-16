@@ -1,0 +1,3 @@
+spring:
+  liquibase:
+    change-log: classpath:init-db-master-test.xml

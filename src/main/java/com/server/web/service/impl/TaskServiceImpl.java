@@ -29,7 +29,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> getListTaskHistoryChangeState(Long userId) {
-        return taskRepository.findByUserIdAndEndTimeBefore(userId, LocalDateTime.now()).stream().map(converter::convert).collect(Collectors.toList());
+        return taskRepository.findByUserIdAndEndTimeBefore(userId).stream().map(converter::convert).collect(Collectors.toList());
     }
 
     @Transactional

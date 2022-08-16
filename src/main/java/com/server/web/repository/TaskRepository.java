@@ -10,6 +10,6 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByUserId(Long userId);
 
-    @Query(value = "select t from Task t where t.userId = ?1 and t.endTime <= ?2 order by t.endTime desc")
-    List<Task> findByUserIdAndEndTimeBefore(Long userId, LocalDateTime now);
+    @Query(value = "select t from Task t where t.userId = ?1 and t.endTime <= current_timestamp order by t.endTime desc")
+    List<Task> findByUserIdAndEndTimeBefore(Long userId);
 }

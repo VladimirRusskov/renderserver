@@ -1,10 +1,12 @@
 package com.server.web.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
 @Data
+@Accessors(chain = true)
 @Entity
 @Table(name = "applications")
 public class Application {

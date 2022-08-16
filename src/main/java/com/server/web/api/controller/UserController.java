@@ -19,7 +19,7 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequiredArgsConstructor
-public class UserAPIController {
+public class UserController {
     private final UserServiceImpl userService;
     private final UserDtoToUserResponseConverter converter;
 
